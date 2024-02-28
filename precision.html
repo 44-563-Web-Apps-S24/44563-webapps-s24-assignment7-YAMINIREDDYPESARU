@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Timing Game</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body style="background-color: antiquewhite;">
+
+  <h2>Yamini Reddy Pesaru speed check</h2>
+
+  <div id="target" style="background-color: aqua; padding: 10px;"  >
+    Your time
+  </div>
+  <div id="counter" style="background-color: rgb(185, 222, 104); padding: 10px;"  >
+    Count
+  </div>
+
+  <button type="button" class="btn btn-primary" onclick="startTime()">
+    Start Timer
+  </button>
+
+  <button type="button" class="btn btn-primary" onclick="recordTime()">
+    Stop Timer
+  </button>
+  
+  <script> 
+    let stopTime = undefined
+    function recordTime() {
+      stopTime = Date.now()
+      console.log(stopTime)
+    }
+
+    function startTime() {
+      for (let i=0; i<4; i++) {
+        setTimeout(function() {
+          document.getElementById("counter").innerHTML = i
+        } , (1000 * (4 - i)))
+      }
+      setTimeout(function() {
+        if (stopTime == undefined) {
+          document.getElementById("target").innerHTML = "Too Slow"
+        }
+        else {
+          let endTime = Date.now()
+          let difference = endTime - stopTime
+          document.getElementById("target").innerHTML = "Time was " + difference
+
+        }
+      } , 4000)
+    }
+  </script>
+
+</body>
+</html>
